@@ -21,10 +21,10 @@ public class DictionaryGUI extends javax.swing.JFrame {
     static Dictionary<String, String> d;
 
     /**
-     * Creates new form DictionaryGUI
+     * Creates new form DictionaryGUI.
      */
     public DictionaryGUI() {
-        initComponents();
+	initComponents();
 
     }
 
@@ -331,221 +331,221 @@ public class DictionaryGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     // Implementierung wählen und .txt einlesen
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        if (jCheckBoxMenuItem1.isSelected() || jCheckBoxMenuItem2.isSelected() || jCheckBoxMenuItem3.isSelected() || jCheckBoxMenuItem4.isSelected()) {
-            if (jCheckBoxMenuItem1.isSelected()) {
-                d = new SortedArrayDictionary();
+	if (jCheckBoxMenuItem1.isSelected() || jCheckBoxMenuItem2.isSelected() || jCheckBoxMenuItem3.isSelected() || jCheckBoxMenuItem4.isSelected()) {
+	    if (jCheckBoxMenuItem1.isSelected()) {
+		d = new SortedArrayDictionary();
 
-            }
-            if (jCheckBoxMenuItem2.isSelected()) {
-                d = new HashDictionary();
+	    }
+	    if (jCheckBoxMenuItem2.isSelected()) {
+		d = new HashDictionary();
 
-            }
-            if (jCheckBoxMenuItem3.isSelected()) {
-                d = new MapDictionary();
+	    }
+	    if (jCheckBoxMenuItem3.isSelected()) {
+		d = new MapDictionary();
 
-            }
-            if (jCheckBoxMenuItem4.isSelected()) {
-                d = new TreeDictionary();
+	    }
+	    if (jCheckBoxMenuItem4.isSelected()) {
+		d = new TreeDictionary();
 
-            }
-            JFileChooser fc = new JFileChooser();
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
-            fc.setFileFilter(filter);
+	    }
+	    JFileChooser fc = new JFileChooser();
+	    FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+	    fc.setFileFilter(filter);
 
-            fc.setDialogTitle("Dictionary lesen");
-            int returnVal = fc.showOpenDialog(DictionaryGUI.this);
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-            }
-            File c = fc.getSelectedFile();
+	    fc.setDialogTitle("Dictionary lesen");
+	    int returnVal = fc.showOpenDialog(DictionaryGUI.this);
+	    if (returnVal == JFileChooser.APPROVE_OPTION) {
+	    }
+	    File c = fc.getSelectedFile();
 
-            try {
-                BufferedReader in = new BufferedReader(new FileReader(c));
-                String zeile = null;
-                while ((zeile = in.readLine()) != null) {
-                    int pos = zeile.indexOf(' ');
-                    String deutsch = zeile.substring(0, pos);
-                    String englisch = zeile.substring(pos + 1, zeile.length());
-                    d.insert(deutsch, englisch);
-                }
-            } catch (IOException e) {
-            }
-        }
+	    try {
+		BufferedReader in = new BufferedReader(new FileReader(c));
+		String zeile = null;
+		while ((zeile = in.readLine()) != null) {
+		    int pos = zeile.indexOf(' ');
+		    String deutsch = zeile.substring(0, pos);
+		    String englisch = zeile.substring(pos + 1, zeile.length());
+		    d.insert(deutsch, englisch);
+		}
+	    } catch (IOException e) {
+	    }
+	}
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     //suche
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Object o = null;
-        o = d.search(jTextField1.getText());
-        if (o == null) {
-            jLabel3.setText("Wort nicht gefunden");
-        } else {
-            jLabel3.setText(o.toString());
-        }
+	Object o = null;
+	o = d.search(jTextField1.getText());
+	if (o == null) {
+	    jLabel3.setText("Wort nicht gefunden");
+	} else {
+	    jLabel3.setText(o.toString());
+	}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     //löschen
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Object o = null;
-        o = d.search(jTextField1.getText());
-        if (o == null) {
-            jLabel3.setText("Wort nicht gefunden");
-        } else {
-            jLabel3.setText(o.toString());
-            d.remove(jTextField1.getText());
-        }
+	Object o = null;
+	o = d.search(jTextField1.getText());
+	if (o == null) {
+	    jLabel3.setText("Wort nicht gefunden");
+	} else {
+	    jLabel3.setText(o.toString());
+	    d.remove(jTextField1.getText());
+	}
     }//GEN-LAST:event_jButton2ActionPerformed
     //einfügen
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        d.insert(jTextField2.getText(), jTextField3.getText());
+	d.insert(jTextField2.getText(), jTextField3.getText());
     }//GEN-LAST:event_jButton3ActionPerformed
     //ausgabe in TextArea
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        jTextArea1.setText(d.toString());
+	jTextArea1.setText(d.toString());
     }//GEN-LAST:event_jButton4ActionPerformed
     //Perfomance Messung, Aufbaau und suche
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // Dictionary Neuaufbau Einträge n = 16000
-        if (jRadioButton3.isSelected()) {
-            Dictionary perfomance = d;
-            long time = System.nanoTime();
-            try {
-                BufferedReader in = new BufferedReader(new FileReader("dtengl.txt"));
-                String zeile = null;
-                while ((zeile = in.readLine()) != null) {
-                    int pos = zeile.indexOf(' ');
-                    String deutsch = zeile.substring(0, pos);
-                    String englisch = zeile.substring(pos + 1, zeile.length());
-                    perfomance.insert(deutsch, englisch);
-                }
-            } catch (IOException e) {
-            }
+	// Dictionary Neuaufbau Einträge n = 16000
+	if (jRadioButton3.isSelected()) {
+	    Dictionary perfomance = d;
+	    long time = System.nanoTime();
+	    try {
+		BufferedReader in = new BufferedReader(new FileReader("dtengl.txt"));
+		String zeile = null;
+		while ((zeile = in.readLine()) != null) {
+		    int pos = zeile.indexOf(' ');
+		    String deutsch = zeile.substring(0, pos);
+		    String englisch = zeile.substring(pos + 1, zeile.length());
+		    perfomance.insert(deutsch, englisch);
+		}
+	    } catch (IOException e) {
+	    }
 
-            jLabel10.setText((Long.toString(System.nanoTime() - time)));
-            // suche ist erfolgreich Einträge n = 16000
-            if (jRadioButton2.isSelected()) {
-                long time2 = System.nanoTime();
-                try {
-                    BufferedReader in = new BufferedReader(new FileReader("dtengl.txt"));
-                    String zeile = null;
-                    while ((zeile = in.readLine()) != null) {
-                        int pos = zeile.indexOf(' ');
-                        String deutsch = zeile.substring(0, pos);
-                        String englisch = zeile.substring(pos + 1, zeile.length());
-                        perfomance.search(deutsch);
-                        //System.out.println(perfomance.search(deutsch));
-                    }
-                } catch (IOException e) {
-                }
-                jLabel13.setText((Long.toString(System.nanoTime() - time2)));
-            }
-            // suche ist nicht erfolgreich Einträge n = 16000
-            if (jRadioButton4.isSelected()) {
-                long time2 = System.nanoTime();
-                try {
-                    BufferedReader in = new BufferedReader(new FileReader("dtengl.txt"));
-                    String zeile = null;
-                    while ((zeile = in.readLine()) != null) {
-                        int pos = zeile.indexOf(' ');
-                        String deutsch = zeile.substring(0, pos);
-                        String englisch = zeile.substring(pos + 1, zeile.length());
-                        perfomance.search(englisch);
-                        //System.out.println(perfomance.search(englisch));
-                    }
-                } catch (IOException e) {
-                }
-                jLabel13.setText((Long.toString(System.nanoTime() - time2)));
-            }
-        }
-        // Dictionary Neuaufbau Einträge n = 8000
-        if (jRadioButton1.isSelected()) {
-            Dictionary perfomance = d;
-            long time = System.nanoTime();
-            try {
-                BufferedReader in = new BufferedReader(new FileReader("dtengl8000.txt"));
-                String zeile = null;
-                while ((zeile = in.readLine()) != null) {
-                    int pos = zeile.indexOf(' ');
-                    String deutsch = zeile.substring(0, pos);
-                    String englisch = zeile.substring(pos + 1, zeile.length());
-                    perfomance.insert(deutsch, englisch);
-                }
-            } catch (IOException e) {
-            }
-            // suche ist erfolgreich Einträge n = 8000
-            jLabel10.setText((Long.toString(System.nanoTime() - time)));
-            if (jRadioButton2.isSelected()) {
-                long time2 = System.nanoTime();
-                try {
-                    BufferedReader in = new BufferedReader(new FileReader("dtengl8000.txt"));
-                    String zeile = null;
-                    while ((zeile = in.readLine()) != null) {
-                        int pos = zeile.indexOf(' ');
-                        String deutsch = zeile.substring(0, pos);
-                        String englisch = zeile.substring(pos + 1, zeile.length());
-                        perfomance.search(deutsch);
-                        //System.out.println(perfomance.search(deutsch));
-                    }
-                } catch (IOException e) {
-                }
-                jLabel13.setText((Long.toString(System.nanoTime() - time2)));
-            }
-            // suche ist nicht erfolgreich Einträge n = 8000
-            if (jRadioButton4.isSelected()) {
-                long time2 = System.nanoTime();
-                try {
-                    BufferedReader in = new BufferedReader(new FileReader("dtengl8000.txt"));
-                    String zeile = null;
-                    while ((zeile = in.readLine()) != null) {
-                        int pos = zeile.indexOf(' ');
-                        String deutsch = zeile.substring(0, pos);
-                        String englisch = zeile.substring(pos + 1, zeile.length());
-                        perfomance.search(englisch);
-                        //System.out.println(perfomance.search(englisch));
-                    }
-                } catch (IOException e) {
-                }
-                jLabel13.setText((Long.toString(System.nanoTime() - time2)));
-            }
-        }
+	    jLabel10.setText((Long.toString(System.nanoTime() - time)));
+	    // suche ist erfolgreich Einträge n = 16000
+	    if (jRadioButton2.isSelected()) {
+		long time2 = System.nanoTime();
+		try {
+		    BufferedReader in = new BufferedReader(new FileReader("dtengl.txt"));
+		    String zeile = null;
+		    while ((zeile = in.readLine()) != null) {
+			int pos = zeile.indexOf(' ');
+			String deutsch = zeile.substring(0, pos);
+			String englisch = zeile.substring(pos + 1, zeile.length());
+			perfomance.search(deutsch);
+			//System.out.println(perfomance.search(deutsch));
+		    }
+		} catch (IOException e) {
+		}
+		jLabel13.setText((Long.toString(System.nanoTime() - time2)));
+	    }
+	    // suche ist nicht erfolgreich Einträge n = 16000
+	    if (jRadioButton4.isSelected()) {
+		long time2 = System.nanoTime();
+		try {
+		    BufferedReader in = new BufferedReader(new FileReader("dtengl.txt"));
+		    String zeile = null;
+		    while ((zeile = in.readLine()) != null) {
+			int pos = zeile.indexOf(' ');
+			String deutsch = zeile.substring(0, pos);
+			String englisch = zeile.substring(pos + 1, zeile.length());
+			perfomance.search(englisch);
+			//System.out.println(perfomance.search(englisch));
+		    }
+		} catch (IOException e) {
+		}
+		jLabel13.setText((Long.toString(System.nanoTime() - time2)));
+	    }
+	}
+	// Dictionary Neuaufbau Einträge n = 8000
+	if (jRadioButton1.isSelected()) {
+	    Dictionary perfomance = d;
+	    long time = System.nanoTime();
+	    try {
+		BufferedReader in = new BufferedReader(new FileReader("dtengl8000.txt"));
+		String zeile = null;
+		while ((zeile = in.readLine()) != null) {
+		    int pos = zeile.indexOf(' ');
+		    String deutsch = zeile.substring(0, pos);
+		    String englisch = zeile.substring(pos + 1, zeile.length());
+		    perfomance.insert(deutsch, englisch);
+		}
+	    } catch (IOException e) {
+	    }
+	    // suche ist erfolgreich Einträge n = 8000
+	    jLabel10.setText((Long.toString(System.nanoTime() - time)));
+	    if (jRadioButton2.isSelected()) {
+		long time2 = System.nanoTime();
+		try {
+		    BufferedReader in = new BufferedReader(new FileReader("dtengl8000.txt"));
+		    String zeile = null;
+		    while ((zeile = in.readLine()) != null) {
+			int pos = zeile.indexOf(' ');
+			String deutsch = zeile.substring(0, pos);
+			String englisch = zeile.substring(pos + 1, zeile.length());
+			perfomance.search(deutsch);
+			//System.out.println(perfomance.search(deutsch));
+		    }
+		} catch (IOException e) {
+		}
+		jLabel13.setText((Long.toString(System.nanoTime() - time2)));
+	    }
+	    // suche ist nicht erfolgreich Einträge n = 8000
+	    if (jRadioButton4.isSelected()) {
+		long time2 = System.nanoTime();
+		try {
+		    BufferedReader in = new BufferedReader(new FileReader("dtengl8000.txt"));
+		    String zeile = null;
+		    while ((zeile = in.readLine()) != null) {
+			int pos = zeile.indexOf(' ');
+			String deutsch = zeile.substring(0, pos);
+			String englisch = zeile.substring(pos + 1, zeile.length());
+			perfomance.search(englisch);
+			//System.out.println(perfomance.search(englisch));
+		    }
+		} catch (IOException e) {
+		}
+		jLabel13.setText((Long.toString(System.nanoTime() - time2)));
+	    }
+	}
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+	/* Set the Nimbus look and feel */
+	//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+	 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+	 */
+	try {
+	    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+		if ("Nimbus".equals(info.getName())) {
+		    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+		    break;
 
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DictionaryGUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DictionaryGUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DictionaryGUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DictionaryGUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+		}
+	    }
+	} catch (ClassNotFoundException ex) {
+	    java.util.logging.Logger.getLogger(DictionaryGUI.class
+		    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (InstantiationException ex) {
+	    java.util.logging.Logger.getLogger(DictionaryGUI.class
+		    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (IllegalAccessException ex) {
+	    java.util.logging.Logger.getLogger(DictionaryGUI.class
+		    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+	    java.util.logging.Logger.getLogger(DictionaryGUI.class
+		    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	}
+	//</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DictionaryGUI().setVisible(true);
-            }
-        });
+	/* Create and display the form */
+	java.awt.EventQueue.invokeLater(new Runnable() {
+	    public void run() {
+		new DictionaryGUI().setVisible(true);
+	    }
+	});
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
