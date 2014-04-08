@@ -61,11 +61,13 @@ public class DictionaryGUI extends javax.swing.JFrame {
 		String englisch = zeile.substring(pos + 1, zeile.length());
 		//d.search(sprache);
 		if (sprache.equals("deutsch")) {
-		    System.out.println(d.search(deutsch));
+		    //System.out.println(d.search(deutsch));
+		    d.search(deutsch);
 		}
 
 		if (sprache.equals("englisch")) {
-		    System.out.println(d.search(englisch));
+		    //System.out.println(d.search(englisch));
+		    d.search(englisch);
 		}
 	      }
 	  } catch (IOException e) {
