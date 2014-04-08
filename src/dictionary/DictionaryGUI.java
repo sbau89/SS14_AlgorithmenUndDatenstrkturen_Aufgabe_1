@@ -23,7 +23,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
     private Dictionary d;
     private long averageTime;
     private long averageTime2;
-    private boolean bfc = false;
+    private boolean booleanFileChooser = false;
     private File c;
 
     /**
@@ -34,13 +34,18 @@ public class DictionaryGUI extends javax.swing.JFrame {
 
     }
 
-    public void perfomanceSuche() {
+    public void perfomanceSearch() {
         String s = null;
         String sprache = null;
-        if ((jRadioButton8000Einträge.isSelected()
+        if (((jRadioButton8000Einträge.isSelected()
 	      || jRadioButton16000Einträge.isSelected())
 	      && (jRadioButtonErfolgreich.isSelected()
-	      || jRadioButtonNichtErfolgreich.isSelected())) {
+	      || jRadioButtonNichtErfolgreich.isSelected()))
+	      && (sortedArray.isSelected()
+	      || hash.isSelected()
+	      || tree.isSelected()
+	      || hashMap.isSelected()
+	      || treeMap.isSelected())) {
 
 	  if (jRadioButton8000Einträge.isSelected()) {
 	      s = "dtengl8000.txt";
@@ -78,7 +83,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
         }
     }
 
-    public void aufbau() {
+    public void build() {
 
         if (sortedArray.isSelected()
 	      || hash.isSelected()
@@ -112,7 +117,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
 	      d = new MapDictionary(new TreeMap(), "TreeMapDictionary");
 	  }
 
-	  if (bfc) {
+	  if (booleanFileChooser) {
 	      s = c.getName();
 
 	  } else {
@@ -447,9 +452,9 @@ public class DictionaryGUI extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
         }
         c = fc.getSelectedFile();
-        bfc = true;
-        aufbau();
-        bfc = false;
+        booleanFileChooser = true;
+        build();
+        booleanFileChooser = false;
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     //suche
     private void jButtonSuchenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuchenActionPerformed
@@ -485,10 +490,10 @@ public class DictionaryGUI extends javax.swing.JFrame {
     private void jButtonMessenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMessenActionPerformed
         for (int i = 0; i < 100; i++) {
 	  averageTime = System.nanoTime();
-	  aufbau();
+	  build();
 	  averageTime = +(System.nanoTime() - averageTime);
 	  averageTime2 = System.nanoTime();
-	  perfomanceSuche();
+	  perfomanceSearch();
 	  averageTime2 = +(System.nanoTime() - averageTime2);
         }
         averageTime = averageTime / 100;
