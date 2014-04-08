@@ -7,6 +7,8 @@ package dictionary;
 /**
  *
  * @author Stephan
+ * @param <K>
+ * @param <V>
  */
 public interface Dictionary<K, V> {
 

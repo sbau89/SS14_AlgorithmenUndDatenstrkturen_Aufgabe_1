@@ -11,6 +11,16 @@ package dictionary;
 public class SortedArrayDictionary<K extends java.lang.Comparable<? super K>, V>
         extends java.lang.Object
         implements Dictionary<K, V> {
+    
+    public class Entry<K, V> {
+    K key;
+    V value;
+
+    Entry(K k, V v) {
+        key = k;
+        value = v;
+    }
+}
 
     private static final int DEF_CAPACITY = 20;
     private int size;
@@ -21,7 +31,6 @@ public class SortedArrayDictionary<K extends java.lang.Comparable<? super K>, V>
         size = 0;
         entry = new Entry[DEF_CAPACITY];
     }
-
     @SuppressWarnings("unchecked")
     private void ensureCapacity(int newCapacity) {
         if (newCapacity < size) {
@@ -31,7 +40,7 @@ public class SortedArrayDictionary<K extends java.lang.Comparable<? super K>, V>
         entry = new Entry[newCapacity];
         System.arraycopy(old, 0, entry, 0, size);
     }
-
+    // einfügen
     @Override
     public V insert(K key, V value) {
         int i = searchKey(key);
@@ -72,7 +81,7 @@ public class SortedArrayDictionary<K extends java.lang.Comparable<? super K>, V>
         return -1;
 
     }
-
+    // suchen
     @Override
     public V search(K key) {
         int i = searchKey(key);
@@ -82,7 +91,7 @@ public class SortedArrayDictionary<K extends java.lang.Comparable<? super K>, V>
             return null;
         }
     }
-
+    // löschen
     @Override
     public V remove(K key) {
         int i = searchKey(key);
