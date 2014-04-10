@@ -15,7 +15,6 @@ import java.util.TreeMap;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-
 /**
  *
  * @author Stephan
@@ -26,7 +25,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
     private double buildTime;
     private double searchTime;
     private boolean booleanFileChooser = false;
-    private File c; 
+    private File c;
 
     /**
      * Creates new form DictionaryGUI.
@@ -146,12 +145,12 @@ public class DictionaryGUI extends javax.swing.JFrame {
 		long buildTimeStart = System.nanoTime();
 		d.insert(deutsch, englisch);
 		long buildTimeEnd = System.nanoTime();
-		buildTime += buildTimeEnd - buildTimeStart;	      }
+		buildTime += buildTimeEnd - buildTimeStart;
+	      }
 	  } catch (IOException e) {
 	  }
         }
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -505,8 +504,8 @@ public class DictionaryGUI extends javax.swing.JFrame {
         buildTime = buildTime / 100.0;
         searchTime = searchTime / 100.0;
         DecimalFormat f = new DecimalFormat("#0.000");
-        jLabelAusgabeMessungAufbau.setText(f.format(buildTime/1000000.0)+"ms");
-        jLabelAusgabeMessungSuche.setText((f.format(searchTime/1000000.0))+"ms");
+        jLabelAusgabeMessungAufbau.setText(f.format(buildTime / 1000000.0) + "ms");
+        jLabelAusgabeMessungSuche.setText((f.format(searchTime / 1000000.0)) + "ms");
     }//GEN-LAST:event_jButtonMessenActionPerformed
 
     /**
