@@ -9,10 +9,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.TreeMap;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 /**
  *
@@ -21,10 +23,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class DictionaryGUI extends javax.swing.JFrame {
 
     private Dictionary d;
-    private long averageTime;
-    private long averageTime2;
+    private double buildTime;
+    private double searchTime;
     private boolean booleanFileChooser = false;
-    private File c;
+    private File c; 
 
     /**
      * Creates new form DictionaryGUI.
@@ -70,12 +72,18 @@ public class DictionaryGUI extends javax.swing.JFrame {
 		// erfolgreiche Suche
 		if (sprache.equals("deutsch")) {
 		    //System.out.println(d.search(deutsch));
+		    long searchTimeStart = System.nanoTime();
 		    d.search(deutsch);
+		    long searchTimeEnd = System.nanoTime();
+		    searchTime += searchTimeEnd - searchTimeStart;
 		}
 		// nicht erfolgreiche Suche
 		if (sprache.equals("englisch")) {
 		    //System.out.println(d.search(englisch));
+		    long searchTimeStart = System.nanoTime();
 		    d.search(englisch);
+		    long searchTimeEnd = System.nanoTime();
+		    searchTime += searchTimeEnd - searchTimeStart;
 		}
 	      }
 	  } catch (IOException e) {
@@ -135,8 +143,10 @@ public class DictionaryGUI extends javax.swing.JFrame {
 		int pos = zeile.indexOf(' ');
 		String deutsch = zeile.substring(0, pos);
 		String englisch = zeile.substring(pos + 1, zeile.length());
+		long buildTimeStart = System.nanoTime();
 		d.insert(deutsch, englisch);
-	      }
+		long buildTimeEnd = System.nanoTime();
+		buildTime += buildTimeEnd - buildTimeStart;	      }
 	  } catch (IOException e) {
 	  }
         }
@@ -489,17 +499,14 @@ public class DictionaryGUI extends javax.swing.JFrame {
     //Perfomance Messung, aufbau und suche
     private void jButtonMessenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMessenActionPerformed
         for (int i = 0; i < 100; i++) {
-	  averageTime = System.nanoTime();
 	  build();
-	  averageTime = +(System.nanoTime() - averageTime);
-	  averageTime2 = System.nanoTime();
 	  perfomanceSearch();
-	  averageTime2 = +(System.nanoTime() - averageTime2);
         }
-        averageTime = averageTime / 100;
-        averageTime2 = averageTime2 / 100;
-        jLabelAusgabeMessungAufbau.setText(Long.toString(averageTime));
-        jLabelAusgabeMessungSuche.setText((Long.toString(averageTime2)));
+        buildTime = buildTime / 100.0;
+        searchTime = searchTime / 100.0;
+        DecimalFormat f = new DecimalFormat("#0.000");
+        jLabelAusgabeMessungAufbau.setText(f.format(buildTime/1000000.0)+"ms");
+        jLabelAusgabeMessungSuche.setText((f.format(searchTime/1000000.0))+"ms");
     }//GEN-LAST:event_jButtonMessenActionPerformed
 
     /**
