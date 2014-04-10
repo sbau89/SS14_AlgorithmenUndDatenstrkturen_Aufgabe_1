@@ -34,7 +34,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
         initComponents();
 
     }
-
+    @SuppressWarnings("unchecked")
     public void perfomanceSearch() {
         String s = null;
         String sprache = null;
@@ -89,9 +89,8 @@ public class DictionaryGUI extends javax.swing.JFrame {
 	  }
         }
     }
-
+    @SuppressWarnings("unchecked")
     public void build() {
-
         if (sortedArray.isSelected()
 	      || hash.isSelected()
 	      || tree.isSelected()
@@ -449,6 +448,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Implementierung wählen und .txt einlesen
+    @SuppressWarnings("unchecked")
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         JFileChooser fc = new JFileChooser();
@@ -466,6 +466,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
         booleanFileChooser = false;
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     //suche
+    @SuppressWarnings("unchecked")
     private void jButtonSuchenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSuchenActionPerformed
         Object o = null;
         o = d.search(jTextfieldSuchenLöschenEingabe.getText());
@@ -477,6 +478,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSuchenActionPerformed
 
     //löschen
+    @SuppressWarnings("unchecked")
     private void jButtonLöschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLöschenActionPerformed
         Object o = null;
         o = d.search(jTextfieldSuchenLöschenEingabe.getText());
@@ -488,14 +490,17 @@ public class DictionaryGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonLöschenActionPerformed
     //einfügen
+    @SuppressWarnings("unchecked")
     private void jButtonEinfügenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEinfügenActionPerformed
         d.insert(jTextfieldDeutschEingabe.getText(), jTextFieldEnglischEingabe.getText());
     }//GEN-LAST:event_jButtonEinfügenActionPerformed
     //ausgabe in TextArea
+    @SuppressWarnings("unchecked")
     private void jButtonAusgebenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAusgebenActionPerformed
         jTextAreaAusgabe.setText(d.toString());
     }//GEN-LAST:event_jButtonAusgebenActionPerformed
     //Perfomance Messung, aufbau und suche
+    @SuppressWarnings("unchecked")
     private void jButtonMessenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMessenActionPerformed
         for (int i = 0; i < 100; i++) {
 	  build();

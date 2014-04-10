@@ -12,6 +12,7 @@ import java.util.Map;
  * @param <K> key
  * @param <V> value
  */
+@SuppressWarnings("unchecked")
 public class MapDictionary<K, V>
         extends java.lang.Object
         implements Dictionary<K, V> {
