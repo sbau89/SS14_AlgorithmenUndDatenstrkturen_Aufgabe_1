@@ -7,6 +7,8 @@ package dictionary;
 /**
  *
  * @author Stephan
+ * @param <K>
+ * @param <V>
  */
 public class SortedArrayDictionary<K extends java.lang.Comparable<? super K>, V>
         extends java.lang.Object
@@ -109,7 +111,7 @@ public class SortedArrayDictionary<K extends java.lang.Comparable<? super K>, V>
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("SortedArrayDictionary\r\n\r\nEintraege:%d\r\n\r\n", this.size));
+        sb.append(String.format("SortedArrayDictionary: \r\n\r\nEintraege: %d\r\n\r\n", this.size));
         for (int i = 0; i < this.size; i++) {
             sb.append(String.format("\t%s = %s\r\n", entry[i].key.toString(), entry[i].value.toString()));
         }

@@ -44,7 +44,7 @@ public class MapDictionary<K, V>
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(art + "\r\n\r\nEintraege:%d\r\n\r\n", map.size()));
+        sb.append(String.format(art + ":" + "\r\n\r\n Eintraege:%d\r\n\r\n", map.size()));
         for (Map.Entry<K, V> e : map.entrySet()) {
 	  K k = e.getKey();
 	  V v = e.getValue();
