@@ -34,6 +34,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
         initComponents();
 
     }
+
     @SuppressWarnings("unchecked")
     public void perfomanceSearch() {
         String s = null;
@@ -89,6 +90,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
 	  }
         }
     }
+
     @SuppressWarnings("unchecked")
     public void build() {
         if (sortedArray.isSelected()
@@ -150,6 +152,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
 	  }
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -268,15 +271,20 @@ public class DictionaryGUI extends javax.swing.JFrame {
         jMenu1.setToolTipText("");
 
         implementierung.add(sortedArray);
-        sortedArray.setText("SortedArray");
+        sortedArray.setText("SortedArrayDictionary");
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, sortedArray, org.jdesktop.beansbinding.ELProperty.create("${selected}"), sortedArray, org.jdesktop.beansbinding.BeanProperty.create("selected"));
         bindingGroup.addBinding(binding);
 
+        sortedArray.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortedArrayActionPerformed(evt);
+            }
+        });
         jMenu1.add(sortedArray);
 
         implementierung.add(hash);
-        hash.setText("Hash");
+        hash.setText("HashDictionary");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jButtonLöschen, org.jdesktop.beansbinding.ELProperty.create("${selected}"), hash, org.jdesktop.beansbinding.BeanProperty.create("selected"));
         bindingGroup.addBinding(binding);
@@ -284,7 +292,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
         jMenu1.add(hash);
 
         implementierung.add(tree);
-        tree.setText("Tree");
+        tree.setText("TreeDictionary");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tree, org.jdesktop.beansbinding.ELProperty.create("${selected}"), tree, org.jdesktop.beansbinding.BeanProperty.create("selected"));
         bindingGroup.addBinding(binding);
@@ -294,7 +302,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
         jMenu3.setText("Map");
 
         implementierung.add(hashMap);
-        hashMap.setText("HashMap");
+        hashMap.setText("HashMapDictionary");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, hashMap, org.jdesktop.beansbinding.ELProperty.create("${selected}"), hashMap, org.jdesktop.beansbinding.BeanProperty.create("selected"));
         bindingGroup.addBinding(binding);
@@ -302,7 +310,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
         jMenu3.add(hashMap);
 
         implementierung.add(treeMap);
-        treeMap.setText("TreeMap");
+        treeMap.setText("TreeMapDictionary");
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, treeMap, org.jdesktop.beansbinding.ELProperty.create("${selected}"), treeMap, org.jdesktop.beansbinding.BeanProperty.create("selected"));
         bindingGroup.addBinding(binding);
@@ -448,6 +456,7 @@ public class DictionaryGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Implementierung wählen und .txt einlesen
+
     @SuppressWarnings("unchecked")
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
@@ -512,6 +521,10 @@ public class DictionaryGUI extends javax.swing.JFrame {
         jLabelAusgabeMessungAufbau.setText(f.format(buildTime / 1000000.0) + "ms");
         jLabelAusgabeMessungSuche.setText((f.format(searchTime / 1000000.0)) + "ms");
     }//GEN-LAST:event_jButtonMessenActionPerformed
+
+    private void sortedArrayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortedArrayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sortedArrayActionPerformed
 
     /**
      * @param args the command line arguments

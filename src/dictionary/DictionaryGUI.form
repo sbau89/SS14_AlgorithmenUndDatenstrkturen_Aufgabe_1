@@ -21,18 +21,21 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="implementierung"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="SortedArray"/>
+                <Property name="text" type="java.lang.String" value="SortedArrayDictionary"/>
               </Properties>
               <BindingProperties>
                 <BindingProperty name="selected" source="sortedArray" sourcePath="${selected}" target="sortedArray" targetPath="selected" updateStrategy="0" immediately="false"/>
               </BindingProperties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sortedArrayActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="hash">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="implementierung"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Hash"/>
+                <Property name="text" type="java.lang.String" value="HashDictionary"/>
               </Properties>
               <BindingProperties>
                 <BindingProperty name="selected" source="jButtonL&#xf6;schen" sourcePath="${selected}" target="hash" targetPath="selected" updateStrategy="0" immediately="false"/>
@@ -43,7 +46,7 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="implementierung"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tree"/>
+                <Property name="text" type="java.lang.String" value="TreeDictionary"/>
               </Properties>
               <BindingProperties>
                 <BindingProperty name="selected" source="tree" sourcePath="${selected}" target="tree" targetPath="selected" updateStrategy="0" immediately="false"/>
@@ -59,7 +62,7 @@
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="implementierung"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="HashMap"/>
+                    <Property name="text" type="java.lang.String" value="HashMapDictionary"/>
                   </Properties>
                   <BindingProperties>
                     <BindingProperty name="selected" source="hashMap" sourcePath="${selected}" target="hashMap" targetPath="selected" updateStrategy="0" immediately="false"/>
@@ -70,7 +73,7 @@
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="implementierung"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="TreeMap"/>
+                    <Property name="text" type="java.lang.String" value="TreeMapDictionary"/>
                   </Properties>
                   <BindingProperties>
                     <BindingProperty name="selected" source="treeMap" sourcePath="${selected}" target="treeMap" targetPath="selected" updateStrategy="0" immediately="false"/>

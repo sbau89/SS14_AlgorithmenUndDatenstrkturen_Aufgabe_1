@@ -10,42 +10,111 @@ package dictionary;
  * @param <K>
  * @param <V>
  */
-public class HashDictionary<K, V>
+class HashDictionary<K extends java.lang.Comparable<K>, V>
         extends java.lang.Object
         implements Dictionary<K, V> {
 
-    private Entry<K, V>[] entry;
-    private int capacity;
-    
-    
-    public HashDictionary(){  
-        
+    static private int capacity = 32423;
+    static Object[] tab;
+    static int size;
+
+    public HashDictionary() {
+        tab = new Object[capacity];
+        for (int i = 0; i < capacity; i++) {
+	  tab[i] = null;
+        }
     }
-   
-    public class Entry<K, V> {
+
+    private static class ChainedEntry<K, V> {
 
         K key;
         V value;
+        ChainedEntry next;
 
-        Entry(K k, V v) {
+        public ChainedEntry(K k, V v, ChainedEntry p) {
 	  key = k;
 	  value = v;
+	  next = p;
         }
     }
-    
+
+    public int h(K key) {
+        int k = key.hashCode() % capacity;
+        if (k < 0) {
+	  k = k * (-1);
+        }
+        return k;
+    }
 
     @Override
     public V insert(K key, V value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int k = h(key);
+        if (tab[k] == null) {
+	  tab[k] = new ChainedEntry(key, value, null);
+	  return null;
+        } else {
+	  ChainedEntry p = (ChainedEntry) tab[h(key)];
+	  while (!p.key.equals(key) && p.next != null) {
+	      p = p.next;
+	  }
+	  if (!p.key.equals(key)) {
+	      p.next = new ChainedEntry(key, value, null);
+	      return null;
+	  }
+	  if (p.key.equals(key)) {
+	      V v = (V) p.value;
+	      p.value = value;
+	      return v;
+	  }
+        }
+        return null;
     }
 
     @Override
     public V search(K key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ChainedEntry p = (ChainedEntry) tab[h(key)];
+        while (!p.key.equals(key) && p.next != null) {
+	  p = p.next;
+        }
+        if (p != null) {
+	  return (V) p.value;
+        } else {
+	  return null;
+        }
+
     }
 
     @Override
     public V remove(K key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ChainedEntry p = (ChainedEntry) tab[h(key)];
+        while (!p.next.key.equals(key) && p.next != null) {
+	  p = p.next;
+        }
+        if (p != null) {
+	  V value = (V) p.next.value;
+	  p.next = p.next.next;
+	  return (V) p.value;
+        } else {
+	  return null;
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder("HashDictionary:\r\n\r\n");
+        appendS(s);
+        s.append("\r\nEinträge: ").append(size);
+        size = 0;
+        return s.toString();
+    }
+
+    private static void appendS(StringBuilder s) {
+        for (int i = 0; i < capacity; i++) {
+	  ChainedEntry entry = (ChainedEntry) tab[i];
+	  for (ChainedEntry e; entry != null; entry = entry.next) {
+	      s.append("\t").append(entry.key).append(" = ").append(entry.value).append("\r\n");
+	      size++;
+	  }
+        }
     }
 }
