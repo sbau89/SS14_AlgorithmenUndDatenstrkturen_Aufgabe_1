@@ -14,7 +14,7 @@ class HashDictionary<K extends java.lang.Comparable<K>, V>
         extends java.lang.Object
         implements Dictionary<K, V> {
 
-    static private int capacity = 32423;
+    private static final int capacity = 32423;
     static Object[] tab;
     static int size;
 
@@ -73,20 +73,28 @@ class HashDictionary<K extends java.lang.Comparable<K>, V>
     @Override
     public V search(K key) {
         ChainedEntry p = (ChainedEntry) tab[h(key)];
+        if(p == null){
+            return null;
+        } else{
         while (!p.key.equals(key) && p.next != null) {
 	  p = p.next;
         }
-        if (p != null) {
+        if (p.key.equals(key)) {
 	  return (V) p.value;
         } else {
 	  return null;
         }
 
-    }
+    }}
 
     @Override
     public V remove(K key) {
         ChainedEntry p = (ChainedEntry) tab[h(key)];
+        if(p.next == null){
+            V value = (V) p.value;
+            tab[h(key)] = null;
+            return value;
+        } else{
         while (!p.next.key.equals(key) && p.next != null) {
 	  p = p.next;
         }
@@ -97,7 +105,7 @@ class HashDictionary<K extends java.lang.Comparable<K>, V>
         } else {
 	  return null;
         }
-    }
+    }}
 
     @Override
     public String toString() {
