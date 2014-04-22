@@ -29,27 +29,27 @@ public class TreeDictionary<K extends java.lang.Comparable<K>, V>
         Node<K, V> right;
 
         private Node(K k, V v) {
-	  height = 0;
-	  key = k;
-	  value = v;
-	  left = null;
-	  right = null;
+            height = 0;
+            key = k;
+            value = v;
+            left = null;
+            right = null;
         }
     }
 
     private int getHeight(Node<K, V> p) {
         if (p == null) {
-	  return -1;
+            return -1;
         } else {
-	  return p.height;
+            return p.height;
         }
     }
 
     private int getBalance(Node<K, V> p) {
         if (p == null) {
-	  return 0;
+            return 0;
         } else {
-	  return getHeight(p.right) - getHeight(p.left);
+            return getHeight(p.right) - getHeight(p.left);
         }
     }
 
@@ -59,14 +59,15 @@ public class TreeDictionary<K extends java.lang.Comparable<K>, V>
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     private Node<K, V> insertR(K key, V value, Node<K, V> p) {
         if (p == null) {
-	  p = new Node(key, value);
+            p = new Node(key, value);
         } else if (key.compareTo(p.key) < 0) {
-	  p.left = insertR(key, value, p.left);
+            p.left = insertR(key, value, p.left);
         } else if (key.compareTo(p.key) > 0) {
-	  p.right = insertR(key, value, p.right);
-	  // Schlüssel bereits vorhanden; mache nichts;
+            p.right = insertR(key, value, p.right);
+            // Schlüssel bereits vorhanden; mache nichts;
         } else {
         }
         p = balance(p);
@@ -75,21 +76,21 @@ public class TreeDictionary<K extends java.lang.Comparable<K>, V>
 
     private Node<K, V> balance(Node<K, V> p) {
         if (p == null) {
-	  return null;
+            return null;
         }
         p.height = Math.max(getHeight(p.left), getHeight(p.right)) + 1;
         if (getBalance(p) == -2) {
-	  if (getBalance(p.left) <= 0) {
-	      p = rotateRight(p);
-	  } else {
-	      p = rotateLeftRight(p);
-	  }
+            if (getBalance(p.left) <= 0) {
+                p = rotateRight(p);
+            } else {
+                p = rotateLeftRight(p);
+            }
         } else if (getBalance(p) == +2) {
-	  if (getBalance(p.right) >= 0) {
-	      p = rotateLeft(p);
-	  } else {
-	      p = rotateRightLeft(p);
-	  }
+            if (getBalance(p.right) >= 0) {
+                p = rotateLeft(p);
+            } else {
+                p = rotateRightLeft(p);
+            }
         }
         return p;
     }
@@ -133,13 +134,13 @@ public class TreeDictionary<K extends java.lang.Comparable<K>, V>
 
     private V searchR(K key, Node<K, V> p) {
         if (p == null) {
-	  return null;
+            return null;
         } else if (key.compareTo(p.key) < 0) {
-	  return searchR(key, p.left);
+            return searchR(key, p.left);
         } else if (key.compareTo(p.key) > 0) {
-	  return searchR(key, p.right);
+            return searchR(key, p.right);
         } else {
-	  return p.value;
+            return p.value;
         }
     }
 
@@ -151,20 +152,20 @@ public class TreeDictionary<K extends java.lang.Comparable<K>, V>
     private Node<K, V> removeR(K key, Node<K, V> p) {
         if (p == null) {
         } else if (key.compareTo(p.key) < 0) {
-	  p.left = removeR(key, p.left);
+            p.left = removeR(key, p.left);
         } else if (key.compareTo(p.key) > 0) {
-	  p.right = removeR(key, p.right);
+            p.right = removeR(key, p.right);
         } else {
-	  if (p.left == null || p.right == null) {
-	      // p hat ein oder kein Kind:
-	      p = (p.left != null) ? p.left : p.right;
-	  } else {
-	      // p hat zwei Kinder:
-	      Entry<K, V> min = new Entry<K, V>();
-	      p.right = getRemMinR(p.right, min);
-	      p.key = min.key;
-	      p.value = min.value;
-	  }
+            if (p.left == null || p.right == null) {
+                // p hat ein oder kein Kind:
+                p = (p.left != null) ? p.left : p.right;
+            } else {
+                // p hat zwei Kinder:
+                Entry<K, V> min = new Entry<K, V>();
+                p.right = getRemMinR(p.right, min);
+                p.key = min.key;
+                p.value = min.value;
+            }
         }
         p = balance(p);
         return p;
@@ -173,11 +174,11 @@ public class TreeDictionary<K extends java.lang.Comparable<K>, V>
     private Node<K, V> getRemMinR(Node<K, V> p, Entry<K, V> min) {
         assert p != null;
         if (p.left == null) {
-	  min.key = p.key;
-	  min.value = p.value;
-	  p = p.right;
+            min.key = p.key;
+            min.value = p.value;
+            p = p.right;
         } else {
-	  p.left = getRemMinR(p.left, min);
+            p.left = getRemMinR(p.left, min);
         }
         p = balance(p);
         return p;
@@ -200,10 +201,10 @@ public class TreeDictionary<K extends java.lang.Comparable<K>, V>
 
     private static void appendR(StringBuilder s, Node p) {
         if (p != null) {
-	  appendR(s, p.left);
-	  s.append("\t").append(p.key).append(" = ").append(p.value).append("\r\n");
-	  size++;
-	  appendR(s, p.right);
+            appendR(s, p.left);
+            s.append("\t").append(p.key).append(" = ").append(p.value).append("\r\n");
+            size++;
+            appendR(s, p.right);
         }
     }
 }
