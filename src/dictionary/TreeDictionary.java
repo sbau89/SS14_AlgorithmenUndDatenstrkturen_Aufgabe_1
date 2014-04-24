@@ -16,6 +16,7 @@ public class TreeDictionary<K extends java.lang.Comparable<K>, V>
 
     private Node<K, V> root;
     private static int size = 0;
+    V oldValue;
 
     public TreeDictionary() {
     }
@@ -56,19 +57,23 @@ public class TreeDictionary<K extends java.lang.Comparable<K>, V>
     @Override
     public V insert(K key, V value) {
         root = insertR(key, value, root);
-        return null;
+        return oldValue;
     }
 
     @SuppressWarnings("unchecked")
     private Node<K, V> insertR(K key, V value, Node<K, V> p) {
         if (p == null) {
             p = new Node(key, value);
+            oldValue = null;
         } else if (key.compareTo(p.key) < 0) {
             p.left = insertR(key, value, p.left);
         } else if (key.compareTo(p.key) > 0) {
             p.right = insertR(key, value, p.right);
             // Schlüssel bereits vorhanden; mache nichts;
         } else {
+            oldValue = value;
+            p.value = value;          
+            
         }
         p = balance(p);
         return p;
@@ -146,16 +151,18 @@ public class TreeDictionary<K extends java.lang.Comparable<K>, V>
 
     public V remove(K key) {
         root = removeR(key, root);
-        return null;
+        return oldValue;
     }
 
     private Node<K, V> removeR(K key, Node<K, V> p) {
         if (p == null) {
+            oldValue = null;
         } else if (key.compareTo(p.key) < 0) {
             p.left = removeR(key, p.left);
         } else if (key.compareTo(p.key) > 0) {
             p.right = removeR(key, p.right);
         } else {
+            oldValue = p.value;
             if (p.left == null || p.right == null) {
                 // p hat ein oder kein Kind:
                 p = (p.left != null) ? p.left : p.right;

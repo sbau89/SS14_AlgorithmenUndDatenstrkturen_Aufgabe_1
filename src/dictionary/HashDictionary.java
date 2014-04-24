@@ -15,11 +15,11 @@ class HashDictionary<K extends java.lang.Comparable<K>, V>
         implements Dictionary<K, V> {
 
     private static final int capacity = 32423;
-    static Object[] tab;
-    static int size;
+    ChainedEntry<K,V>[] tab;
+    private int size;
 
     public HashDictionary() {
-        tab = new Object[capacity];
+        tab = (ChainedEntry<K,V>[]) new ChainedEntry[capacity];
         for (int i = 0; i < capacity; i++) {
             tab[i] = null;
         }
@@ -41,7 +41,7 @@ class HashDictionary<K extends java.lang.Comparable<K>, V>
     public int h(K key) {
         int k = key.hashCode() % capacity;
         if (k < 0) {
-            k = k * (-1);
+            k *= (-1);
         }
         return k;
     }
@@ -74,7 +74,7 @@ class HashDictionary<K extends java.lang.Comparable<K>, V>
     @Override
     @SuppressWarnings("unchecked")
     public V search(K key) {
-        ChainedEntry p = (ChainedEntry) tab[h(key)];
+        ChainedEntry p = tab[h(key)];
         if (p == null) {
             return null;
         } else {
@@ -121,7 +121,7 @@ class HashDictionary<K extends java.lang.Comparable<K>, V>
         return s.toString();
     }
 
-    private static void appendS(StringBuilder s) {
+    private void appendS(StringBuilder s) {
         for (int i = 0; i < capacity; i++) {
             ChainedEntry entry = (ChainedEntry) tab[i];
             for (ChainedEntry e; entry != null; entry = entry.next) {

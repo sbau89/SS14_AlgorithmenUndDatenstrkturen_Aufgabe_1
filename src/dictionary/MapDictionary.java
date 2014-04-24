@@ -20,25 +20,24 @@ public class MapDictionary<K, V>
     private Map<K, V> map;
     private String art;
 
-    public MapDictionary(Map m, String s) {
+    public MapDictionary(Map<K,V> m, String s) {
         map = m;
         art = s;
     }
 
     @Override
     public V insert(K key, V value) {
-        map.put(key, value);
-        return value;
+        return map.put(key, value);
     }
 
     @Override
     public V search(K key) {
-        return (V) map.get(key);
+        return map.get(key);
     }
 
     @Override
     public V remove(K key) {
-        return (V) map.remove(key);
+        return map.remove(key);
     }
 
     @Override
