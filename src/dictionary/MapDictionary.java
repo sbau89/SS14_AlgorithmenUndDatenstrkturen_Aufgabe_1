@@ -17,8 +17,8 @@ public class MapDictionary<K, V>
         extends java.lang.Object
         implements Dictionary<K, V> {
 
-    private Map<K, V> map;
-    private String art;
+    private final Map<K, V> map;
+    private final String art;
 
     public MapDictionary(Map<K,V> m, String s) {
         map = m;
@@ -44,11 +44,11 @@ public class MapDictionary<K, V>
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(art + ":" + "\r\n\r\n Eintraege:%d\r\n\r\n", map.size()));
-        for (Map.Entry<K, V> e : map.entrySet()) {
+        map.entrySet().stream().forEach((e) -> {
             K k = e.getKey();
             V v = e.getValue();
             sb.append(String.format("\t%s = %s\r\n", k.toString(), v.toString()));
-        }
+        });
         return sb.toString();
     }
 }
